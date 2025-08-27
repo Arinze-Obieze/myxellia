@@ -1,8 +1,6 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import '../app/swiper-overrides.css'; //overides default colour for the bullets for pagination
+"use client";
+
+import ListingCard from "./ListingCard";
 
 const listings = [
   {
@@ -38,34 +36,7 @@ export default function ListingsCarousel() {
   return (
     <div className="grid grid-cols-1 md:flex md:justify-center gap-6 px-4">
       {listings.map((listing, idx) => (
-        <div
-          key={idx}
-          className="rounded-xl overflow-hidden shadow-lg bg-white w-105 relative h-72"
-        >
-          <Swiper
-            modules={[Pagination]}
-            pagination={{ clickable: true }}
-            spaceBetween={0}
-            slidesPerView={1}
-            className="h-72"
-          >
-            {listing.images.map((img, imgIdx) => (
-              <SwiperSlide key={imgIdx}>
-                <div className="relative h-72 w-full">
-                  <img
-                    src={img}
-                    alt={listing.title}
-                    className="w-full h-72 object-cover"
-                  />
-                  <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent px-6 pb-6 pt-16 flex flex-col justify-end rounded-b-xl">
-                    <div className="text-xs text-white font-semibold">{listing.label}</div>
-                    <div className="text-lg text-white font-bold">{listing.title}</div>
-                  </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
+        <ListingCard key={idx} listing={listing} />
       ))}
     </div>
   );
