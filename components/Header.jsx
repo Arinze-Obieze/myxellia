@@ -3,15 +3,16 @@ import { useState } from "react";
 import { FaBell } from "react-icons/fa";
 import { TbCalculatorFilled } from "react-icons/tb";
 import BudgetModal from "./BudgetModal"
+import CalendarModal from "./CalendarModal"
 
 export default function Header() {
-
   const [openBudgetModal, setOpenBudgetModal] = useState(false);
+  const [openCalendarModal, setOpenCalendarModal] = useState(false);
 
   const navIcons = [
     { icon: FaBell, label: "Notifications" },
     { icon: TbCalculatorFilled, label: "Calculator", action: () => setOpenBudgetModal(true) },
-    { icon: "/icons/calendar.svg", label: "Calendar", isImage: true }, // For image icons
+    { icon: "/icons/calendar.svg", label: "Calendar", isImage: true,   action: () => setOpenCalendarModal(prev => !prev)  }, 
     { icon: "/icons/message-notif.svg", label: "Messages", isImage: true },
   ];
 
@@ -64,6 +65,12 @@ export default function Header() {
        {/* Modal */}
        {openBudgetModal && (
         <BudgetModal onClose={() => setOpenBudgetModal(false)} />
+      )}
+
+
+       {/* Calendar Modal */}
+       {openCalendarModal && (
+        <CalendarModal onClose={() => setOpenCalendarModal(false)} />
       )}
     </>
  
