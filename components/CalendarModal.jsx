@@ -143,7 +143,7 @@ export default function CalendarModal({ onClose }) {
               )}
               {selected && (
                 <div className="absolute top-8 left-1/2 transform -translate-x-1/2">
-                  <div className="px-3 py-1 rounded-full bg-violet-600 text-[11px]">
+                  <div className="px-3 py-1 rounded-full bg-blue-600 text-[11px]">
                     {c.day}
                   </div>
                 </div>
