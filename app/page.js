@@ -13,7 +13,6 @@ export default function Home() {
         <div className="md:w-2/3">
           <SalesOverview/>
         </div>
-        
         <div className="md:w-1/3 space-y-14">
           <ListingOverview/>
           <UsersOverview/>
@@ -23,6 +22,9 @@ export default function Home() {
       <div>
         <ListingCarousel/>
       </div>
+
+
+
     </div>
   );
 }

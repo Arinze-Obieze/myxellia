@@ -1,16 +1,23 @@
+'use client'
+import { useState } from "react";
 import { FaBell } from "react-icons/fa";
 import { TbCalculatorFilled } from "react-icons/tb";
+import BudgetModal from "./BudgetModal"
 
 export default function Header() {
+
+  const [openBudgetModal, setOpenBudgetModal] = useState(false);
+
   const navIcons = [
     { icon: FaBell, label: "Notifications" },
-    { icon: TbCalculatorFilled, label: "Calculator" },
+    { icon: TbCalculatorFilled, label: "Calculator", action: () => setOpenBudgetModal(true) },
     { icon: "/icons/calendar.svg", label: "Calendar", isImage: true }, // For image icons
     { icon: "/icons/message-notif.svg", label: "Messages", isImage: true },
   ];
 
   return (
-    <header className="w-full bg-secondary text-white flex items-center justify-between px-6 py-3 h-21">
+    <>
+       <header className="w-full bg-secondary text-white flex items-center justify-between px-6 py-3 h-21">
       {/* Logo Section */}
       <div className="flex items-center space-x-2">
         <img 
@@ -25,7 +32,11 @@ export default function Header() {
         <div className="flex items-center space-x-6">
           {/* 2. Map over the array to render each icon */}
           {navIcons.map((item, index) => (
-            <div key={index} className="tooltip" data-tip={item.label}> {/* Optional: Add a tooltip */}
+            <div 
+            key={index} 
+            onClick={item.action || undefined}
+            className="tooltip" 
+            data-tip={item.label}> {/* Optional: Add a tooltip */}
               {item.isImage ? (
                 // Render an image icon
                 <img 
@@ -49,5 +60,12 @@ export default function Header() {
         </div>
       </div>
     </header>
+
+       {/* Modal */}
+       {openBudgetModal && (
+        <BudgetModal onClose={() => setOpenBudgetModal(false)} />
+      )}
+    </>
+ 
   );
 }
