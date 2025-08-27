@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import {
   BarChart,
@@ -8,7 +9,6 @@ import {
   ResponsiveContainer,
   CartesianGrid,
 } from "recharts";
-import { MdKeyboardArrowRight } from "react-icons/md";
 
 // Sample data (Jan - Sep) — values are in millions
 const data = [
@@ -25,11 +25,11 @@ const data = [
 
 const MetricCard = ({ title, amount, color, delta }) => {
   return (
-    <div className="flex items-center justify-between bg-white rounded-lg shadow-sm p-4 w-full">
+    <div className="flex items-center justify-between bg-white shadow-box rounded-lg p-2 ">
       <div>
-            <div className="mt-2 text-xl font-semibold" style={{ color }}>{amount}</div>
+            <div className="mt-2 text-lg font-semibold" style={{ color }}>{amount}</div>
             <div className='flex space-x-2 items-center'>
-            <div className="text-sm font-medium text-gray-500">{title}</div> 
+            <div className="text-xs font-medium text-gray-500">{title}</div> 
             <div className="text-xs text-gray-400">{delta}%</div>
             </div>
       </div>
@@ -51,78 +51,87 @@ export default function SalesOverview() {
   const formatNaira = (n) => `₦${n.toLocaleString()}.00`;
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
-      <div className="max-w-6xl mx-auto">
-        <div className="bg-white rounded-2xl shadow p-6">
-          {/* Header */}
-          <div className="flex items-start justify-between">
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800">Sales Overview</h3>
-              <p className="text-sm text-gray-400">Showing overview Jan 2022 - Sep 2022</p>
-            </div>
+    <div className=" bg-gray-50 ">
+      <div className=" mx-auto">
+        <div className="bg-white rounded-2xl shadow-box p-6">
+      
+ {/* Header */}
 
-            <div className="flex items-center space-x-4">
-              <div className="flex rounded-lg bg-gray-100 p-1 text-sm">
-                {["1 Week", "1 Month", "1 Year"].map((r) => (
-                  <button
-                    key={r}
-                    onClick={() => setRange(r)}
-                    className={`px-3 py-1 rounded-lg text-sm font-medium transition-all ${
-                      range === r
-                        ? "bg-white shadow text-gray-800"
-                        : "text-gray-500"
-                    }`}
-                  >
-                    {r}
-                  </button>
-                ))}
-              </div>
+<div className="flex shadow-bottom flex-col md:flex-row items-start justify-between gap-4 w-full">
+  <div>
+      <h3 className="text-lg font-semibold text-gray-800">Sales Overview</h3>
+      <p className="text-sm text-gray-400">Showing overview Jan 2022 - Sep 2022</p>
+    </div>
+  
+  <div className="flex flex-col items-start gap-3">
+    {/* Transactions button */}
+    <button className="px-9 py-4 bg-white rounded-full shadow-box text-sm font-medium ">
+      View Transactions
+    </button>
 
-              <button className="px-4 py-2 bg-white rounded-full shadow text-sm font-medium flex items-center">
-                View Transactions
-                <MdKeyboardArrowRight className="ml-2 text-lg" />
-              </button>
-            </div>
-          </div>
+  {/* Range buttons */}
+<div className="flex rounded-lg mb-2 bg-white p-1 mt-4 text-sm">
+  {["1 Week", "1 Month", "1 Year"].map((r) => (
+    <button
+      key={r}
+      onClick={() => setRange(r)}
+      className={`px-3 py-1 rounded-lg cursor-pointer text-sm font-medium transition-all ${
+        range === r
+          ? "bg-gray-100 text-gray-800 shadow" 
+          : "bg-white text-gray-500"        
+      }`}
+    >
+      {r}
+    </button>
+  ))}
+</div>
+
+  </div>
+</div>
+
+
+
+
 
           {/* Body: chart + metrics */}
-          <div className="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+          <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+           
             {/* Chart */}
-            <div className="lg:col-span-2 bg-white rounded-lg p-4 shadow-sm">
-              <div style={{ height: 240 }}>
+            <div className="">
+              <div style={{ width: 400, height: 160, }}>
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart
                     data={data}
-                    margin={{ top: 10, right: 20, left: -10, bottom: 0 }}
-                    barCategoryGap={"30%"}
-                    barGap={6}
+                    margin={{ top: 10, right: 20, left: 0, bottom: 0 }}
+                    barCategoryGap={"20%"}
+                    barGap={4}
                   >
                     <CartesianGrid strokeDasharray="3 3" vertical={false} />
                     <XAxis dataKey="month" tick={{ fontSize: 12 }} />
 
                     {/* YAxis with ticks every 10 (0,10,20...) and labels like 10m, 20m */}
                     <YAxis
-                      tick={{ fontSize: 12 }}
+                      tick={{ fontSize: 10 }}
                       ticks={ticks}
                       domain={[0, maxTick]}
                       tickFormatter={tickFormatter}
                     />
 
-                    <Tooltip formatter={(value) => `${value}m`} />
+                    {/* <Tooltip formatter={(value) => `${value}m`} /> */}
 
                     {/* Three separate small bars per month */}
-                    <Bar dataKey="purple" fill="#7C3AED" barSize={8} radius={[4, 4, 0, 0]} />
-                    <Bar dataKey="green" fill="#10B981" barSize={8} radius={[4, 4, 0, 0]} />
-                    <Bar dataKey="red" fill="#EF4444" barSize={8} radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="purple" fill="#7C3AED" barSize={4} radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="green" fill="#10B981" barSize={4} radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="red" fill="#EF4444" barSize={4} radius={[4, 4, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
             </div>
 
             {/* Right column: metrics */}
-            <div className="space-y-4">
-              <div className="bg-gradient-to-tr from-white to-gray-50 rounded-lg p-4 shadow-sm">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className="">
+              <div className="">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-3">
                   <MetricCard title="Total Inflow" amount={formatNaira(120000000)} color="#7C3AED" delta={2.5} />
                   <MetricCard title="MRR" amount={formatNaira(50000000)} color="#10B981" delta={2.5} />
                   <MetricCard title="Commission Revenue" amount={formatNaira(200000000)} color="#10B981" delta={0.5} />

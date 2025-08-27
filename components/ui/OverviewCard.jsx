@@ -7,7 +7,7 @@ const OverviewCard = ({ title, icon, viewAllLink, data, bgColor = "bg-secondary-
   const isReactIcon = React.isValidElement(icon);
   
   return (
-    <div className='w-[407px] rounded-lg bg-white border border-gray-200 shadow-sm'>
+    <div className='w-100 h-38 rounded-lg bg-white shadow-box '>
       {/* Header Section */}
       <div className={`flex justify-between items-center p-4 ${bgColor}`}>
         <div className='flex items-center space-x-2'>
@@ -28,7 +28,7 @@ const OverviewCard = ({ title, icon, viewAllLink, data, bgColor = "bg-secondary-
       </div>
 
       {/* Data Items */}
-      <div className="flex justify-between p-4">
+      <div className="flex justify-between pt-6 pb-4">
         {data.map((item, index) => (
           <div key={index} className="flex flex-col items-center flex-1">
             <h4 className='text-sm text-gray-600'>{item.name}</h4>
