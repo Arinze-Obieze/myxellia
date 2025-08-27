@@ -51,8 +51,8 @@ export default function SalesOverview() {
   const formatNaira = (n) => `₦${n.toLocaleString()}.00`;
 
   return (
-    <div className=" bg-gray-50 ">
-      <div className=" mx-auto">
+    <div className="w-full">
+      <div className="">
         <div className="bg-white rounded-2xl shadow-box p-6">
       
  {/* Header */}

@@ -1,129 +1,72 @@
-import React, { useRef } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, A11y } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import '../app/swiper-overrides.css'; //overides default colour for the bullets for pagination
 
-function ListingCard({ tag, title, images }) {
-  const paginationRef = useRef(null);
+const listings = [
+  {
+    label: "MOST CLICKED",
+    title: "Urban Prime Plaza Premiere",
+    images: [
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1502673530728-f79b4cab31b1?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=800&q=80",
+    ],
+  },
+  {
+    label: "MOST WATCHLISTED",
+    title: "Urban Prime Plaza Premiere",
+    images: [
+      "https://images.unsplash.com/photo-1486304873000-235643847519?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=800&q=80",
+    ],
+  },
+  {
+    label: "HOTTEST LISTING",
+    title: "Urban Prime Plaza Premiere",
+    images: [
+      "https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1467987506553-8f3916508521?auto=format&fit=crop&w=800&q=80",
+    ],
+  },
+];
 
+export default function ListingsCarousel() {
   return (
-    <div
-      className="listing-card relative rounded-2xl overflow-hidden shadow-sm bg-gray-100"
-      style={{
-        // Optional: tweak Swiper CSS vars if you like
-        "--swiper-pagination-bullet-size": "8px",
-        "--swiper-pagination-bullet-horizontal-gap": "6px",
-      }}
-    >
-      {/* Global-ish styles scoped to this component to ensure bullets are visible */}
-      <style>{`
-        /* scope styles to only affect bullets inside .listing-card */
-        .listing-card .swiper-pagination {
-          position: absolute !important;
-          bottom: 10px;
-          left: 0;
-          right: 0;
-          display: flex;
-          justify-content: center;
-          z-index: 40; /* above overlay */
-          pointer-events: auto; /* must be clickable */
-        }
-        .listing-card .swiper-pagination-bullet {
-          width: 8px;
-          height: 8px;
-          background: rgba(255,255,255,0.85);
-          opacity: 1;
-          border-radius: 9999px;
-          margin: 0 4px;
-          transform: scale(1);
-          transition: transform 150ms ease;
-        }
-        .listing-card .swiper-pagination-bullet-active {
-          transform: scale(1.45);
-          background: #ffffff;
-        }
-      `}</style>
-
-      <Swiper
-        modules={[Pagination, A11y]}
-        slidesPerView={1}
-        onBeforeInit={(swiper) => {
-          // attach pagination to our local paginationRef container
-          swiper.params.pagination.el = paginationRef.current;
-          swiper.params.pagination.clickable = true;
-        }}
-        className="h-72"
-      >
-        {images.map((src, i) => (
-          <SwiperSlide key={i}>
-            <img
-              src={src}
-              alt={`${title} ${i + 1}`}
-              className="w-full h-72 object-cover"
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-
-      {/* Text overlay (put behind bullets by giving it a lower z-index) */}
-      <div className="pointer-events-none absolute inset-0 z-10">
-        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
-        <div className="absolute bottom-3 left-4 right-4 text-white">
-          <p className="text-[11px] tracking-wider font-semibold uppercase opacity-90">
-            {tag}
-          </p>
-          <h3 className="text-lg font-bold leading-tight">{title}</h3>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
+      {listings.map((listing, idx) => (
+        <div
+          key={idx}
+          className="rounded-xl overflow-hidden shadow-lg bg-white relative h-80"
+        >
+          <Swiper
+            modules={[Pagination]}
+            pagination={{ clickable: true }}
+            spaceBetween={0}
+            slidesPerView={1}
+            className="h-80"
+          >
+            {listing.images.map((img, imgIdx) => (
+              <SwiperSlide key={imgIdx}>
+                <div className="relative h-80 w-full">
+                  <img
+                    src={img}
+                    alt={listing.title}
+                    className="w-full h-80 object-cover"
+                  />
+                  <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent px-6 pb-6 pt-16 flex flex-col justify-end rounded-b-xl">
+                    <div className="text-xs text-white font-semibold">{listing.label}</div>
+                    <div className="text-lg text-white font-bold">{listing.title}</div>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
-      </div>
-
-      {/* THIS is where Swiper will render the bullets for this card */}
-      <div
-        ref={paginationRef}
-        className="absolute left-0 right-0 bottom-3 z-40 flex justify-center pointer-events-auto"
-      />
-    </div>
-  );
-}
-
-export default function ListingsGrid() {
-  const items = [
-    {
-      tag: "Most Clicked",
-      title: "Urban Prime Plaza Premiere",
-      images: [
-        "https://images.unsplash.com/photo-1529429612778-cffe94636df3?q=80&w=1600&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1499914485622-a88fac536970?q=80&w=1600&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1501183638710-841dd1904471?q=80&w=1600&auto=format&fit=crop",
-      ],
-    },
-    {
-      tag: "Most Watchlisted",
-      title: "Urban Prime Plaza Premiere",
-      images: [
-        "https://images.unsplash.com/photo-1451976426598-a7593bd6d0b2?q=80&w=1600&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=1600&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=1600&auto=format&fit=crop",
-      ],
-    },
-    {
-      tag: "Hottest Listing",
-      title: "Urban Prime Plaza Premiere",
-      images: [
-        "https://images.unsplash.com/photo-1507086182422-97bd7ca241c6?q=80&w=1600&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?q=80&w=1600&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?q=80&w=1600&auto=format&fit=crop",
-      ],
-    },
-  ];
-
-  return (
-    <div className="mx-auto max-w-7xl p-4">
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {items.map((card, idx) => (
-          <ListingCard key={idx} {...card} />
-        ))}
-      </div>
+      ))}
     </div>
   );
 }

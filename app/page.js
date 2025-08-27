@@ -6,11 +6,11 @@ import SalesOverview from "@/components/SalesCharts"
 
 export default function Home() {
   return (
-    <div className="container mx-auto px-4 py-6">
+    <div className="w-full mx-auto md:px-18 py-6">
       <h1 className="font-semibold mb-6 text-2xl">Welcome, Ahmed</h1>
 
-      <div className="flex flex-col xl:flex-row gap-6 mb-8">
-        <div className="mdf:w-2/3">
+      <div className="w-full flex flex-col xl:flex-row gap-6 mb-8">
+        <div className="md:w-2/3">
           <SalesOverview/>
         </div>
         
