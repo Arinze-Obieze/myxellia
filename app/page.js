@@ -2,7 +2,7 @@
 import UsersOverview from "@/components/UsersOverview";
 import ListingOverview from "@/components/ListingOverview";
 import ListingCarousel from '@/components/ListingCarousel'
-import SalesOverview from "@/components/SalesCharts"                            
+import SalesOverview from "@/components/SalesOverview"                            
 export default function Home() {
   return (
     <div className="w-full mx-auto md:px-18 py-6">
