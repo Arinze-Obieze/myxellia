@@ -18,7 +18,7 @@ export default function Header() {
 
   return (
     <>
-       <header className="w-full bg-secondary text-white flex items-center justify-between px-6 py-3 h-21">
+       <header className="relative w-full bg-secondary text-white flex items-center justify-between px-6 py-3 h-21">
       {/* Logo Section */}
       <div className="flex items-center space-x-2">
         <img 
@@ -70,6 +70,7 @@ export default function Header() {
 
        {/* Calendar Modal */}
        {openCalendarModal && (
+        
         <CalendarModal onClose={() => setOpenCalendarModal(false)} />
       )}
     </>

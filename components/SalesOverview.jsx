@@ -5,7 +5,7 @@ import SalesChart from "./charts/SalesChart";
 import MetricCard from "./ui/MetricCard";
 import RangeSelector from "./ui/RangeSelector";
 
-// Sample data
+// Sample chart data
 const data = [
   { month: "Jan", purple: 35, green: 25, red: 15 },
   { month: "Feb", purple: 28, green: 30, red: 10 },
@@ -22,6 +22,38 @@ export default function SalesOverview() {
   const [range, setRange] = useState("1 Year");
 
   const formatNaira = (n) => `₦${n.toLocaleString()}.00`;
+
+  // Metrics data
+  const metrics = [
+    {
+      title: "Total Inflow",
+      amount: formatNaira(120000000),
+      color: "#7C3AED",
+      img: "/icons/arrow-up.svg",
+      delta: 2.5,
+    },
+    {
+      title: "MRR",
+      amount: formatNaira(50000000),
+      color: "#10B981",
+      img: "/icons/arrow-up.svg",
+      delta: 2.5,
+    },
+    {
+      title: "Commission Revenue",
+      amount: formatNaira(200000000),
+      color: "#10B981",
+      img: "/icons/arrow-up.svg",
+      delta: 0.5,
+    },
+    {
+      title: "GMV",
+      amount: formatNaira(100000000),
+      color: "#EF4444",
+      img: "/icons/arrow-down.svg",
+      delta: 0.5,
+    },
+  ];
 
   return (
     <div className="w-full">
@@ -51,30 +83,9 @@ export default function SalesOverview() {
           <SalesChart data={data} />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <MetricCard
-              title="Total Inflow"
-              amount={formatNaira(120000000)}
-              color="#7C3AED"
-              delta={2.5}
-            />
-            <MetricCard
-              title="MRR"
-              amount={formatNaira(50000000)}
-              color="#10B981"
-              delta={2.5}
-            />
-            <MetricCard
-              title="Commission Revenue"
-              amount={formatNaira(200000000)}
-              color="#10B981"
-              delta={0.5}
-            />
-            <MetricCard
-              title="GMV"
-              amount={formatNaira(100000000)}
-              color="#EF4444"
-              delta={0.5}
-            />
+            {metrics.map((metric, idx) => (
+              <MetricCard key={idx} {...metric} />
+            ))}
           </div>
         </div>
       </div>

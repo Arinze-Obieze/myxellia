@@ -1,6 +1,6 @@
 "use client";
 
-export default function MetricCard({ title, amount, color, delta }) {
+export default function MetricCard({ title, amount, color, img, delta }) {
   return (
     <div className="flex items-center justify-between bg-white shadow-box rounded-lg p-2">
       <div>
@@ -9,9 +9,11 @@ export default function MetricCard({ title, amount, color, delta }) {
         </div>
         <div className="flex space-x-2 items-center">
           <div className="text-xs font-medium text-gray-500">{title}</div>
+          <img src={img} alt={'growth-icon'}/>
           <div className="text-xs text-gray-400">{delta}%</div>
         </div>
       </div>
     </div>
   );
 }
+ 
