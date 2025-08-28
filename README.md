@@ -1,36 +1,133 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+```markdown
+# Myxellia
 
-## Getting Started
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 📑 Table of Contents
+- [✨ Features](#-features)
+- [🛠 Tech Stack / Key Dependencies](#-tech-stack--key-dependencies)
+- [📂 File Structure Overview](#-file-structure-overview)
+- [⚡ Prerequisites](#-prerequisites)
+- [📥 Installation](#-installation)
+- [🚀 Usage / Getting Started](#-usage--getting-started)
+- [⚙️ Configuration](#️-configuration)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
+- [👨‍💻 Author / Acknowledgements](#-author--acknowledgements)
+- [📬 Contact](#-contact)
+
+---
+
+## ✨ Features
+- Developed using **Next.js** framework.  
+- Utilizes **React** for building user interfaces.  
+- Includes components for **calendar functionality**.  
+- Uses **React Icons** with fallback to Figma design icons where no match exists.  
+- Leverages **Recharts** for data visualization.  
+- Integrates **Swiper** for creating carousels.  
+- UI/UX originally designed in **Figma**, then faithfully implemented in this codebase.  
+  👉 [View the original design file](https://www.figma.com/design/pUYktG5jFviKwkUsQgbl5o/Recruitment?node-id=3-60621&t=wl8ANUt3ZthrEtfY-0)  
+
+---
+
+## 🛠 Tech Stack / Key Dependencies
+- **JavaScript**
+- **CSS**
+- **Next.js**
+- **React**
+- **react-dom**
+- **react-icons**
+- **recharts**
+- **swiper**
+- **tailwindcss**
+
+---
+
+## 📂 File Structure Overview
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+.
+├── .gitignore
+├── README.md
+├── app/
+├── components/
+├── jsconfig.json
+├── next.config.mjs
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── public/
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+````
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## ⚡ Prerequisites
+- **Node.js** (compatible with Next.js `15.5.0`)  
+- **npm** or **yarn** package manager  
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📥 Installation
+```bash
+# Clone the repository
+git clone https://github.com/Arinze-Obieze/myxellia.git
+cd myxellia
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Install dependencies
+npm install   # or yarn install
+````
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🚀 Usage / Getting Started
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+# Start the development server
+npm run dev   # or yarn dev
+```
+
+Navigate to 👉 `http://localhost:3000`
+
+```bash
+# Build the project
+npm run build
+```
+
+---
+
+## ⚙️ Configuration
+
+Make sure to check `next.config.mjs` and environment variables for project-specific configurations.
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
+Please make sure to update tests as appropriate.
+
+---
+
+## 📄 License
+
+This project is open source and available under the **MIT License**.
+See the [LICENSE](https://opensource.org/licenses/MIT) file for details.
+
+---
+
+## 👨‍💻 Author / Acknowledgements
+
+Built with ❤️ by **Arinze Obieze**
+
+---
+
+## 📬 Contact
+
+* **GitHub**: [Arinze-Obieze/myxellia](https://github.com/Arinze-Obieze)
+* **Email**: [arinze@xoal.io](mailto:arinze@xoal.io)
+
+```
+```
